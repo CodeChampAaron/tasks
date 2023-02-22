@@ -68,8 +68,20 @@ export const removeDollars = (amounts: string[]): number[] => {
  * string that ends in "!" should be made uppercase. Also, remove any strings that end
  * in question marks ("?").
  */
+
+export const UpperOrNot = (message: string): string => {
+    if (message.charAt(message.length - 1) === "!") {
+        return message.toUpperCase();
+    } else {
+        return message;
+    }
+};
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    let new_messages: string[] = messages.filter(
+        (message: string): boolean => message.charAt(message.length - 1) !== "?" //Im basicallty only adding strings to new list that dont end with ?
+    );
+    new_messages = new_messages.map(UpperOrNot);
+    return new_messages;
 };
 
 /**
