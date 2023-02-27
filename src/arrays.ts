@@ -162,12 +162,15 @@ export function injectPositive(values: number[]): number[] {
             const indexOfNeg = values.findIndex(
                 (value: number): boolean => value < 0
             );
+            const workingVals = [...values];
             let sum = 0;
-            for (let i = 0; i < indexOfNeg; i++) {
-                sum += values[i];
-            }
-
             const NewVals = [...values];
+            const arr2 = workingVals.splice(0, indexOfNeg);
+            sum = arr2.reduce(
+                (currentTotal: number, num: number) => currentTotal + num,
+                0
+            );
+
             NewVals.splice(indexOfNeg + 1, 0, sum);
             return NewVals;
         }
