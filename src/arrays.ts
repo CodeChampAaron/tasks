@@ -125,12 +125,13 @@ export function makeMath(addends: number[]): string {
             (currentTotal: number, num: number) => currentTotal + num,
             0
         );
-        let returnVal: string = String(sum) + "=";
-        for (let i = 0; i < addends.length; i += 1) {
-            returnVal += String(addends[i]);
-            returnVal += "+";
-        }
-        return returnVal.slice(0, -1);
+        const ArrStrings = addends.map(String);
+        const returnVal: string = String(sum) + "=";
+        const ReturnVal = ArrStrings.reduce(
+            (currentTotal: string, num: string) => currentTotal + num + "+",
+            returnVal
+        );
+        return ReturnVal.slice(0, -1);
     }
 }
 
