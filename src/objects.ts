@@ -135,10 +135,14 @@ export function duplicateQuestion(id: number, oldQuestion: Question): Question {
  * the list of existing `options`. Remember that the new Question MUST have
  * its own separate copy of the `options` list, rather than the same reference
  * to the original question's list!
- * Check out the subsection about "Nested Fields" for more information.
+ * Check out the subsection about "NestSed Fields" for more information.
  */
 export function addOption(question: Question, newOption: string): Question {
-    return question;
+    const newquestion = {
+        ...question,
+        options: [...question.options, newOption]
+    };
+    return newquestion;
 }
 
 /**
