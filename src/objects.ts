@@ -80,8 +80,19 @@ export function toShortForm(question: Question): string {
  * ------------------------------
  * Check the unit tests for more examples of what this looks like!
  */
+const adddash = (option: string) => {
+    return "- " + option;
+};
 export function toMarkdown(question: Question): string {
-    return "";
+    let output: string = "# " + question.name + "\n";
+    output = output + question.body + "\n";
+    if (question.type === "multiple_choice_question") {
+        question.options = question.options.map(adddash);
+        output = output + question.options.join("\n");
+        return output;
+    } else {
+        return output;
+    }
 }
 
 /**
@@ -89,7 +100,8 @@ export function toMarkdown(question: Question): string {
  * `newName`.
  */
 export function renameQuestion(question: Question, newName: string): Question {
-    return question;
+    const newVersion = { ...question, name: newName };
+    return newVersion;
 }
 
 /**
