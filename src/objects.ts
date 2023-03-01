@@ -10,7 +10,16 @@ export function makeBlankQuestion(
     name: string,
     type: QuestionType
 ): Question {
-    return {};
+    return {
+        points: 1,
+        name: name,
+        id: id,
+        body: "",
+        options: [],
+        expected: "",
+        published: false,
+        type: type
+    };
 }
 
 /**
