@@ -17,8 +17,20 @@ export function getPublishedQuestions(questions: Question[]): Question[] {
  * considered "non-empty". An empty question has an empty string for its `body` and
  * `expected`, and an empty array for its `options`.
  */
+const Validquestion = (question: Question): boolean => {
+    if (
+        question.body === "" &&
+        question.expected === "" &&
+        question.options.length === 0
+    ) {
+        return false;
+    } else {
+        return true;
+    }
+};
 export function getNonEmptyQuestions(questions: Question[]): Question[] {
-    return [];
+    const nonEmptyQuestions = questions.filter(Validquestion);
+    return nonEmptyQuestions;
 }
 
 /***
