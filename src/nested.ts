@@ -203,7 +203,14 @@ export function renameQuestionById(
     targetId: number,
     newName: string
 ): Question[] {
-    return [];
+    const newarray = [...questions];
+    const index = newarray.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+    const newQuestion = { ...newarray[index], name: newName };
+    newarray[index] = newQuestion;
+
+    return newarray;
 }
 
 /***
