@@ -119,7 +119,26 @@ id,name,options,points,published
  * Check the unit tests for more examples!
  */
 export function toCSV(questions: Question[]): string {
-    return "";
+    let returnString = "id,name,options,points,published\n";
+    returnString =
+        returnString +
+        questions.reduce(
+            (currentTotal: string, question: Question) =>
+                currentTotal +
+                String(question.id) +
+                "," +
+                question.name +
+                "," +
+                String(question.options.length) +
+                "," +
+                String(question.points) +
+                "," +
+                String(question.published) +
+                "\n",
+            ""
+        );
+    returnString = returnString.substring(0, returnString.length - 1);
+    return returnString;
 }
 
 /**
