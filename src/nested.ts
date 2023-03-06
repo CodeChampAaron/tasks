@@ -147,8 +147,19 @@ export function toCSV(questions: Question[]): string {
  * Answers. Each Question gets its own Answer, copying over the `id` as the `questionId`,
  * making the `text` an empty string, and using false for both `submitted` and `correct`.
  */
+
+const makeAnswer = (question: Question): Answer => {
+    const answer: Answer = {
+        questionId: question.id,
+        text: "",
+        submitted: false,
+        correct: false
+    };
+    return answer;
+};
 export function makeAnswers(questions: Question[]): Answer[] {
-    return [];
+    const answers = questions.map(makeAnswer);
+    return answers;
 }
 
 /***
@@ -220,12 +231,16 @@ export function renameQuestionById(
  * AND if the `newQuestionType` is no longer "multiple_choice_question" than the `options`
  * must be set to an empty list.
  */
+
+const returnNewQ = (question: Question): Question => {
+    return { ...question };
+};
 export function changeQuestionTypeById(
     questions: Question[],
     targetId: number,
     newQuestionType: QuestionType
 ): Question[] {
-    const newArray = [...questions];
+    const newArray = questions.map(returnNewQ);
     const index = newArray.findIndex(
         (question: Question): boolean => question.id === targetId
     );
@@ -254,7 +269,30 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    return [];
+    const newArray = questions.map(returnNewQ);
+    const index = newArray.findIndex(
+        (question: Question): boolean => (question.id === targetId) === true
+    );
+    if (index === -1) {
+        return newArray;
+    }
+    if (targetOptionIndex === -1) {
+        newArray[index] = {
+            ...newArray[index],
+            options: [...newArray[index].options, newOption]
+        };
+    } else {
+        newArray[index] = {
+            ...newArray[index],
+            options: [...newArray[index].options].splice(
+                targetOptionIndex,
+                1,
+                newOption
+            )
+        };
+    }
+
+    return newArray;
 }
 
 /***
