@@ -270,7 +270,36 @@ export function editOption(
     targetId: number,
     targetOptionIndex: number,
     newOption: string
-): Question[] {}
+): Question[] {
+    const theQ = questions.find(
+        (question: Question): boolean => question.id === targetId
+    );
+    const index = questions.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+    const newarray = questions.map(
+        (question: Question): Question => ({
+            ...question,
+            options: [...question.options]
+        })
+    );
+    if (theQ) {
+        if (targetOptionIndex === -1) {
+            const qEdit: Question = {
+                ...theQ,
+                options: [...theQ.options, newOption]
+            };
+            newarray.splice(index, 1, qEdit);
+            return newarray;
+        } else {
+            const qEdit: Question = { ...theQ, options: [...theQ.options] };
+            qEdit.options[targetOptionIndex] = newOption;
+            newarray.splice(index, 1, qEdit);
+            return newarray;
+        }
+    }
+    return newarray;
+}
 
 /***
  * Consumes an array of questions, and produces a new array based on the original array.
