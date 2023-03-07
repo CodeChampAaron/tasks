@@ -1,6 +1,7 @@
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 import { makeBlankQuestion } from "./objects";
+import { duplicateQuestion } from "./objects";
 
 /**
  * Consumes an array of questions and returns a new array with only the questions
@@ -233,7 +234,8 @@ export function renameQuestionById(
  */
 
 const returnNewQ = (question: Question): Question => {
-    return { ...question };
+    const newQuestion: Question = { ...question };
+    return newQuestion;
 };
 export function changeQuestionTypeById(
     questions: Question[],
@@ -268,32 +270,7 @@ export function editOption(
     targetId: number,
     targetOptionIndex: number,
     newOption: string
-): Question[] {
-    const newArray = questions.map(returnNewQ);
-    const index = newArray.findIndex(
-        (question: Question): boolean => (question.id === targetId) === true
-    );
-    if (index === -1) {
-        return newArray;
-    }
-    if (targetOptionIndex === -1) {
-        newArray[index] = {
-            ...newArray[index],
-            options: [...newArray[index].options, newOption]
-        };
-    } else {
-        newArray[index] = {
-            ...newArray[index],
-            options: [...newArray[index].options].splice(
-                targetOptionIndex,
-                1,
-                newOption
-            )
-        };
-    }
-
-    return newArray;
-}
+): Question[] {}
 
 /***
  * Consumes an array of questions, and produces a new array based on the original array.
@@ -306,5 +283,19 @@ export function duplicateQuestionInArray(
     targetId: number,
     newId: number
 ): Question[] {
-    return [];
+    const newarray = [...questions];
+    const questionTODUP = questions.find(
+        (question: Question): boolean => question.id === targetId
+    );
+    const index = questions.findIndex(
+        (question: Question): boolean => question.id === targetId
+    );
+    if (questionTODUP) {
+        const dup = duplicateQuestion(newId, questionTODUP);
+        const newarray = [...questions];
+        newarray.splice(index + 1, 0, dup);
+        return newarray;
+    } else {
+        return newarray;
+    }
 }
