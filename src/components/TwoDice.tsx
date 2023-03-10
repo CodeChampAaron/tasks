@@ -18,7 +18,7 @@ export function TwoDice(): JSX.Element {
         if (die1_value === 1 && die2_value === 1) {
             return <span>Lose</span>;
         } else if (die1_value !== die2_value) {
-            return <span>Dickhead boi</span>;
+            return <span>Nothing</span>;
         } else {
             return <span>Win</span>;
         }
