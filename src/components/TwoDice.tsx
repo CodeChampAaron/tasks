@@ -1,7 +1,5 @@
-// import { spawn } from "child_process";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-// import { text } from "stream/consumers";
 
 /**
  * Here is a helper function you *must* use to "roll" your die.
@@ -20,7 +18,7 @@ export function TwoDice(): JSX.Element {
         if (die1_value === 1 && die2_value === 1) {
             return <span>Lose</span>;
         } else if (die1_value !== die2_value) {
-            return <span>Dickhead boi</span>;
+            return <span>Nothing</span>;
         } else {
             return <span>Win</span>;
         }
