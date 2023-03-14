@@ -11,7 +11,7 @@ const PEOPLE = [
 ];
 
 export function ChooseTeam(): JSX.Element {
-    const [allOptions, setAllOptions] = useState<string[]>(PEOPLE);
+    const [allOptions] = useState<string[]>(PEOPLE);
     // setAllOptions(allOptions);
     const [team, setTeam] = useState<string[]>([]);
 
