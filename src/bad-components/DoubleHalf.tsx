@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import { dhValue, setDhValue } from "./DoubleHalfState";
 interface setVals {
     setDhValue: (Newval: number) => void;
     dhValue: number;
