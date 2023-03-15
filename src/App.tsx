@@ -15,6 +15,7 @@ import { ShoveBox } from "./bad-components/ShoveBox";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
 import { CheckAnswer } from "./form-components/CheckAnswer";
 import { GiveAttempts } from "./form-components/GiveAttempts";
+import { EditMode } from "./form-components/EditMode";
 
 function App(): JSX.Element {
     return (
@@ -78,6 +79,8 @@ function App(): JSX.Element {
             <CheckAnswer expectedAnswer="ManUp"></CheckAnswer>
             <hr />
             <GiveAttempts></GiveAttempts>
+            <hr />
+            <EditMode></EditMode>
         </div>
     );
 }
