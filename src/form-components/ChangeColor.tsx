@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { ColoredBox } from "../bad-components/ColoredBox";
 
 export function ChangeColor(): JSX.Element {
     const [Color, setcolor] = useState<string>("green");
@@ -25,6 +26,7 @@ export function ChangeColor(): JSX.Element {
             <div>
                 {listofcolors.map((color: string) => (
                     <Form.Check
+                        style={{ backgroundColor: color }}
                         key={color}
                         inline
                         type="radio"
@@ -38,7 +40,15 @@ export function ChangeColor(): JSX.Element {
                     />
                 ))}
             </div>
-            <div>You have chosen {Color}</div>
+            <div>
+                You have chosen{" "}
+                <span
+                    data-testid="colored-box"
+                    style={{ backgroundColor: Color }}
+                >
+                    {Color}
+                </span>
+            </div>
         </div>
     );
 }
