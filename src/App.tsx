@@ -13,6 +13,11 @@ import { DoubleHalf } from "./bad-components/DoubleHalf";
 import { ColoredBox } from "./bad-components/ColoredBox";
 import { ShoveBox } from "./bad-components/ShoveBox";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
+import { CheckAnswer } from "./form-components/CheckAnswer";
+import { GiveAttempts } from "./form-components/GiveAttempts";
+import { EditMode } from "./form-components/EditMode";
+import { ChangeColor } from "./form-components/ChangeColor";
+import { MultipleChoiceQuestion } from "./form-components/MultipleChoiceQuestion";
 
 function App(): JSX.Element {
     return (
@@ -72,6 +77,19 @@ function App(): JSX.Element {
             <ChangeType></ChangeType>
             <hr />
             <CycleHoliday></CycleHoliday>
+            <hr />
+            <CheckAnswer expectedAnswer="ManUp"></CheckAnswer>
+            <hr />
+            <GiveAttempts></GiveAttempts>
+            <hr />
+            <EditMode></EditMode>
+            <hr />
+            <ChangeColor></ChangeColor>
+            <hr />
+            <MultipleChoiceQuestion
+                options={["man up", "pay your bills", "increase Credit Score"]}
+                expectedAnswer={"pay your bills"}
+            ></MultipleChoiceQuestion>
         </div>
     );
 }
