@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
-import { ColoredBox } from "../bad-components/ColoredBox";
 
 export function ChangeColor(): JSX.Element {
     const [Color, setcolor] = useState<string>("green");
