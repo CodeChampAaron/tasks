@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 
-interface EditBoy {
-    student: boolean;
-    userName: string;
-    editMode: boolean;
-}
 export function EditMode(): JSX.Element {
     const [student, setstudent] = useState<boolean>(true);
     const [userName, setuserName] = useState<string>("Your Name");
